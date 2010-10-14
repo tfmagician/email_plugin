@@ -43,7 +43,7 @@ When you wanna send email using the ExEmailCompoennt in your shell or controller
 		);	
 	}
 
-If you use this configuration file, you do not need write an email config repeatly.
+If you use this configuration file, you do not need write an email config repeatedly.
 
 ## Send email in your controller ##
 
@@ -74,28 +74,28 @@ Then set config name as $useMailerConfig property, ExMailComponent load this con
 You can use the ExEmailComponent in your shell like using in your controller.
 But you should extend EmailShell like this.
 
-App::import('Shell', 'Email.EmailShell');
-class SendShell extends EmailShell {
+	App::import('Shell', 'Email.EmailShell');
+	class SendShell extends EmailShell {
 
-	var $useMailerConfig = 'default';
-	var $helpers = array('Html', 'Time');
+		var $useMailerConfig = 'default';
+		var $helpers = array('Html', 'Time');
 
-	function startup() {
+		function startup() {
+		}
+
+		function main() {
+			$this->ExEmail->to = 'test@test.com';
+			$this->ExEmail->set('body', $this->params['body']);
+			$this->ExEmail->send();
+
+			if(empty($this->ExEmail->smtpError)) {
+				$this->out('Complete.');
+				return;
+			}	 
+			$this->out($this->ExEmail->smtpError);
+		}
+
 	}
-
-	function main() {
-		$this->ExEmail->to = 'test@test.com';
-		$this->ExEmail->set('body', $this->params['body']);
-		$this->ExEmail->send();
-
-		if(empty($this->ExEmail->smtpError)) {
-			$this->out('Complete.');
-			return;
-		}	 
-		$this->out($this->ExEmail->smtpError);
-	}
-
-}
 
 And you can set $helper property if you want use some helpers on your email template.
 The other settings and methods that controll your email are same as controller.
