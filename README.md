@@ -43,7 +43,7 @@ When you wanna send email using the ExEmailCompoennt in your shell or controller
 		);	
 	}
 
-If you use this configuration file, you do not need write an email config repeatly.
+If you use this configuration file, you do not need write an email config repeatedly.
 
 ## Send email in your controller ##
 
