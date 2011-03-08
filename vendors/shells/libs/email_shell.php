@@ -28,6 +28,7 @@ class EmailShell extends Shell {
     $this->ExEmail = new ExEmailComponent();
     $this->ExEmail->initialize($Controller);
 
+    parent::initialize();
   }
 
 }
